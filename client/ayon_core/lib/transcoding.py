@@ -1161,7 +1161,7 @@ def oiio_color_convert(
     if source_view and source_display and source_colorspace:
         logger.warning(
             "Both source display/view and source_colorspace provided. "
-            "Using source display/view pair and ignoring source_colorspace."
+            "Using source_colorspace and ignoring source display/view pair."
         )
 
     if additional_command_args:
@@ -1169,7 +1169,7 @@ def oiio_color_convert(
 
     # Handle the different conversion cases
     # Source view and display are known
-    if source_view and source_display:
+    if source_view and source_display and source_colorspace is None:
         if target_colorspace:
             # This is a two-step conversion process since there's no direct
             # display/view to colorspace command
